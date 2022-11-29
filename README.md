@@ -11,8 +11,8 @@ NRP : 5025211148
 Class : PBO (B)
 
 ## About Program
-Aplikasi yang akan dibuat adalah mengenai aplikasi kasir. Dimana terdapat 
-beberapa fitur dalam aplikasi tersebut. Fitur - fitur tersebut, yaitu :
+Aplikasi yang akan dibuat adalah mengenai aplikasi kasir. Terdapat 
+beberapa fitur dalam aplikasi tersebut, yaitu :
 
 * Kode Barang
 * Harga
