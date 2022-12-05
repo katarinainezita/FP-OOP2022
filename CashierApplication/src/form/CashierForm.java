@@ -7,6 +7,7 @@ package form;
 import java.text.NumberFormat;
 import java.util.Locale;
 import javax.swing.event.DocumentEvent;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,14 +23,109 @@ public class CashierForm extends javax.swing.JFrame {
     NumberFormat nf = NumberFormat.getNumberInstance(new Locale("in", "ID"));
     public CashierForm() {
         initComponents();
+        KodeBarang();
+        TotalHarga();
+        Diskon();
     }
     
+    private void Diskon(){
+        txtDiskon.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+               // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+               int diskon, hasilDiskon;
+                diskon = Integer.parseInt(txtJumlahHarga.getText().replace(".", "")) * Integer.parseInt(txtDiskon.getText()) / 100;
+        
+                hasilDiskon = Integer.parseInt(txtJumlahHarga.getText().replace(".", "")) - diskon;
+    
+                
+                txtHasilDiskon.setText(nf.format(diskon));
+                // PPn
+                int hasilPPN = 0;
+                if(chkPPN.isSelected()){
+                    hasilPPN = hasilDiskon * 10 /  100;
+                    txtHasilPPN.setText(nf.format(hasilPPN));
+                }else{
+                    hasilPPN = hasilDiskon * 0 / 100;
+                    txtHasilPPN.setText(nf.format(hasilPPN));
+                }
+        
+                // Total Semua Harga
+                int totalBersih;
+                totalBersih = hasilPPN + hasilDiskon;
+                lblJmlHarga.setText("Rp. " + nf.format(totalBersih));
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+        });
+    }
+    
+//    private void Total(){
+//        lblJmlHarga.getDo
+//    }
+    
+    
+    private void TotalHarga(){
+        txtQTY.getDocument().addDocumentListener(new javax.swing.event.DocumentListener () {
+
+            @Override
+            // Digunakan untuk menampilkan total harga ketika QTY dimasukkan
+            public void insertUpdate(DocumentEvent e) {
+                //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                
+                try{
+                    int hasil = 0;
+                    if(txtQTY.getText().equals("")){
+                        hasil = Integer.parseInt(txtHargaBarang.getText().replace(".", "")) * 0;
+                        
+                    }else {
+                        hasil = Integer.parseInt(txtHargaBarang.getText().replace(".", "")) * Integer.parseInt(txtQTY.getText());
+                        
+                    }
+                    txtTotalHarga.setText(nf.format(hasil));
+                } catch (NumberFormatException arg0){ 
+                }
+            
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+               // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+               try{
+                    int hasil = 0;
+                    if(txtQTY.getText().equals("")){
+                        hasil = Integer.parseInt(txtHargaBarang.getText().replace(".", "")) * 0;
+                        
+                    }else {
+                        hasil = Integer.parseInt(txtHargaBarang.getText().replace(".", "")) * Integer.parseInt(txtQTY.getText());
+                        
+                    }
+                    txtTotalHarga.setText(nf.format(hasil));
+                } catch (NumberFormatException arg0){ 
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+            });
+    }
+           
     private void KodeBarang(){
         txtKodeBarang.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-                string kodeBarang;
+                String kodeBarang;
                 kodeBarang = (String) txtKodeBarang.getText();
                 
                 switch(kodeBarang){
@@ -40,41 +136,138 @@ public class CashierForm extends javax.swing.JFrame {
                         txtQTY.grabFocus();
                         break;
                     case "A002" :
-                        txtNamaBarang.setText("Beras");
-                        txtHargaBarang.setText(nf.format(30000));
+                        txtNamaBarang.setText("Minyak Goreng");
+                        txtHargaBarang.setText(nf.format(15000));
                         // Kursor akan fokus ke QTY
                         txtQTY.grabFocus();
                         break;
                     case "A003" :
-                        txtNamaBarang.setText("Beras");
-                        txtHargaBarang.setText(nf.format(30000));
+                        txtNamaBarang.setText("Gula");
+                        txtHargaBarang.setText(nf.format(12000));
                         // Kursor akan fokus ke QTY
                         txtQTY.grabFocus();
                         break;
                     case "A004" :
-                        txtNamaBarang.setText("Beras");
-                        txtHargaBarang.setText(nf.format(30000));
+                        txtNamaBarang.setText("Garam");
+                        txtHargaBarang.setText(nf.format(3000));
                         // Kursor akan fokus ke QTY
                         txtQTY.grabFocus();
                         break;
                     case "A005" :
-                        txtNamaBarang.setText("Beras");
-                        txtHargaBarang.setText(nf.format(30000));
+                        txtNamaBarang.setText("Daging Sapi");
+                        txtHargaBarang.setText(nf.format(25000));
                         // Kursor akan fokus ke QTY
                         txtQTY.grabFocus();
                         break;
                     case "A006" :
-                        txtNamaBarang.setText("Beras");
-                        txtHargaBarang.setText(nf.format(30000));
+                        txtNamaBarang.setText("Daging Ayam");
+                        txtHargaBarang.setText(nf.format(20000));
                         // Kursor akan fokus ke QTY
                         txtQTY.grabFocus();
                         break;
+                    case "A007" :
+                        txtNamaBarang.setText("Telur");
+                        txtHargaBarang.setText(nf.format(18000));
+                        // Kursor akan fokus ke QTY
+                        txtQTY.grabFocus();
+                        break;
+                    case "A008" :
+                        txtNamaBarang.setText("Gas Elpiji");
+                        txtHargaBarang.setText(nf.format(17000));
+                        // Kursor akan fokus ke QTY
+                        txtQTY.grabFocus();
+                        break;
+                    case "A009" :
+                        txtNamaBarang.setText("Air Mineral");
+                        txtHargaBarang.setText(nf.format(5000));
+                        // Kursor akan fokus ke QTY
+                        txtQTY.grabFocus();
+                        break;
+                    case "A010" :
+                        txtNamaBarang.setText("Susu");
+                        txtHargaBarang.setText(nf.format(6000));
+                        // Kursor akan fokus ke QTY
+                        txtQTY.grabFocus();
+                        break;
+                    default :
+                        txtNamaBarang.setText("");
+                        txtHargaBarang.setText("");
+                        
                 }
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                String kodeBarang;
+                kodeBarang = (String) txtKodeBarang.getText();
+                
+                switch(kodeBarang){
+                    case "A001" :
+                        txtNamaBarang.setText("Beras");
+                        txtHargaBarang.setText(nf.format(30000));
+                        // Kursor akan fokus ke QTY
+                        txtQTY.grabFocus();
+                        break;
+                    case "A002" :
+                        txtNamaBarang.setText("Minyak Goreng");
+                        txtHargaBarang.setText(nf.format(15000));
+                        // Kursor akan fokus ke QTY
+                        txtQTY.grabFocus();
+                        break;
+                    case "A003" :
+                        txtNamaBarang.setText("Gula");
+                        txtHargaBarang.setText(nf.format(12000));
+                        // Kursor akan fokus ke QTY
+                        txtQTY.grabFocus();
+                        break;
+                    case "A004" :
+                        txtNamaBarang.setText("Garam");
+                        txtHargaBarang.setText(nf.format(3000));
+                        // Kursor akan fokus ke QTY
+                        txtQTY.grabFocus();
+                        break;
+                    case "A005" :
+                        txtNamaBarang.setText("Daging Sapi");
+                        txtHargaBarang.setText(nf.format(25000));
+                        // Kursor akan fokus ke QTY
+                        txtQTY.grabFocus();
+                        break;
+                    case "A006" :
+                        txtNamaBarang.setText("Daging Ayam");
+                        txtHargaBarang.setText(nf.format(20000));
+                        // Kursor akan fokus ke QTY
+                        txtQTY.grabFocus();
+                        break;
+                    case "A007" :
+                        txtNamaBarang.setText("Telur");
+                        txtHargaBarang.setText(nf.format(18000));
+                        // Kursor akan fokus ke QTY
+                        txtQTY.grabFocus();
+                        break;
+                    case "A008" :
+                        txtNamaBarang.setText("Gas Elpiji");
+                        txtHargaBarang.setText(nf.format(17000));
+                        // Kursor akan fokus ke QTY
+                        txtQTY.grabFocus();
+                        break;
+                    case "A009" :
+                        txtNamaBarang.setText("Air Mineral");
+                        txtHargaBarang.setText(nf.format(5000));
+                        // Kursor akan fokus ke QTY
+                        txtQTY.grabFocus();
+                        break;
+                    case "A010" :
+                        txtNamaBarang.setText("Susu");
+                        txtHargaBarang.setText(nf.format(6000));
+                        // Kursor akan fokus ke QTY
+                        txtQTY.grabFocus();
+                        break;
+                    default :
+                        txtNamaBarang.setText("");
+                        txtHargaBarang.setText("");
+                        
+                }
             }
 
             @Override
@@ -94,7 +287,7 @@ public class CashierForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lblJmlHarga = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtKodeBarang = new javax.swing.JTextField();
@@ -111,16 +304,14 @@ public class CashierForm extends javax.swing.JFrame {
         txtHasilDiskon = new javax.swing.JTextField();
         chkPPN = new javax.swing.JCheckBox();
         txtHasilPPN = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtTotal = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         lblJmlQTY = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setText("Rp");
+        lblJmlHarga.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        lblJmlHarga.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblJmlHarga.setText("Rp");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -135,6 +326,12 @@ public class CashierForm extends javax.swing.JFrame {
         });
 
         txtHargaBarang.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+
+        txtQTY.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtQTYActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -194,9 +391,6 @@ public class CashierForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Total Harga");
-
         jLabel6.setText("Item Yang Dibeli :");
 
         lblJmlQTY.setText("0");
@@ -219,11 +413,7 @@ public class CashierForm extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(chkPPN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtHasilPPN, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(31, 31, 31)
-                                .addComponent(txtTotal))))
+                                .addComponent(txtHasilPPN, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -235,7 +425,7 @@ public class CashierForm extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblJmlHarga, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(267, 267, 267)
                                 .addComponent(txtDiskon, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
@@ -247,7 +437,7 @@ public class CashierForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addComponent(jLabel1)
+                .addComponent(lblJmlHarga)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -269,14 +459,10 @@ public class CashierForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtHasilPPN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(chkPPN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(964, 413));
+        setSize(new java.awt.Dimension(964, 385));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -286,7 +472,43 @@ public class CashierForm extends javax.swing.JFrame {
 
     private void chkPPNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPPNActionPerformed
         // TODO add your handling code here:
+        jmlTotalHarga();
+        
+        
     }//GEN-LAST:event_chkPPNActionPerformed
+
+    private void txtQTYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQTYActionPerformed
+        // TODO add your handling code here:
+        // Digunakan untuk menambahkan data pada tabel
+        if (txtQTY.getText().equals("")){
+            return;
+        }else{
+            DefaultTableModel model = (DefaultTableModel) tblList.getModel();
+            
+            Object obj [] = new Object[6];
+            obj[1] = txtKodeBarang.getText();
+            obj[2] = txtNamaBarang.getText();
+            obj[3] = txtHargaBarang.getText();
+            obj[4] = txtQTY.getText();
+            obj[5] = txtTotalHarga.getText();
+            
+            model.addRow(obj);
+            
+            int baris = model.getRowCount();
+            for(int i = 0; i < baris; i++){
+                String no = String.valueOf(i + 1);
+                model.setValueAt(no + ".", i, 0);
+            }
+            // Digunakan untuk mengatur tinggi baris
+            tblList.setRowHeight(30);
+            
+            // Digunakan untuk menambahkan jumlah item yang dibeli
+            lblJmlQTY.setText(String.valueOf(baris));
+            
+            jmlTotalHarga();
+            bersih();
+        }
+    }//GEN-LAST:event_txtQTYActionPerformed
 
     /**
      * @param args the command line arguments
@@ -325,14 +547,13 @@ public class CashierForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox chkPPN;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblJmlHarga;
     private javax.swing.JLabel lblJmlQTY;
     private javax.swing.JTable tblList;
     private javax.swing.JTextField txtDiskon;
@@ -343,7 +564,48 @@ public class CashierForm extends javax.swing.JFrame {
     private javax.swing.JTextField txtKodeBarang;
     private javax.swing.JTextField txtNamaBarang;
     private javax.swing.JTextField txtQTY;
-    private javax.swing.JTextField txtTotal;
     private javax.swing.JTextField txtTotalHarga;
     // End of variables declaration//GEN-END:variables
+
+    // Menambahkan Jumlah Harga
+    private void jmlTotalHarga() {
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        int subTotal = 0;
+        for(int i=0; i < tblList.getRowCount(); i++){
+            subTotal += Integer.parseInt((String) tblList.getValueAt(i, 5).toString().replace(".", ""));
+        }
+    
+        txtJumlahHarga.setText(nf.format(subTotal));
+        
+        // Diskon
+        int diskon, hasilDiskon;
+        diskon = Integer.parseInt(txtJumlahHarga.getText().replace(".", "")) * Integer.parseInt(txtDiskon.getText()) / 100;
+        
+        hasilDiskon = Integer.parseInt(txtJumlahHarga.getText().replace(".", "")) - diskon;
+    
+        // PPn
+        int hasilPPN = 0;
+        if(chkPPN.isSelected()){
+            hasilPPN = hasilDiskon * 10 /  100;
+            txtHasilPPN.setText(nf.format(hasilPPN));
+        }else{
+            hasilPPN = hasilDiskon * 0 / 100;
+            txtHasilPPN.setText(nf.format(hasilPPN));
+        }
+        
+        // Total Semua Harga
+        int totalBersih;
+        totalBersih = hasilPPN + hasilDiskon;
+        lblJmlHarga.setText("Rp. " + nf.format(totalBersih));
+    }
+
+    // Membersihkan data saat menambahkan pada tabel
+    private void bersih() {
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        txtKodeBarang.setText("");
+        txtKodeBarang.grabFocus();
+        txtQTY.setText("");
+        txtTotalHarga.setText("");
+    }
 }
