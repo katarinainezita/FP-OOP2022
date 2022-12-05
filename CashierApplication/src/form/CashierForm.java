@@ -4,6 +4,10 @@
  */
 package form;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+import javax.swing.event.DocumentEvent;
+
 /**
  *
  * @author Inezita
@@ -13,8 +17,72 @@ public class CashierForm extends javax.swing.JFrame {
     /**
      * Creates new form CashierForm
      */
+    
+    // Membuat sebuah format mata uang (separator / titik)
+    NumberFormat nf = NumberFormat.getNumberInstance(new Locale("in", "ID"));
     public CashierForm() {
         initComponents();
+    }
+    
+    private void KodeBarang(){
+        txtKodeBarang.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                // throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                string kodeBarang;
+                kodeBarang = (String) txtKodeBarang.getText();
+                
+                switch(kodeBarang){
+                    case "A001" :
+                        txtNamaBarang.setText("Beras");
+                        txtHargaBarang.setText(nf.format(30000));
+                        // Kursor akan fokus ke QTY
+                        txtQTY.grabFocus();
+                        break;
+                    case "A002" :
+                        txtNamaBarang.setText("Beras");
+                        txtHargaBarang.setText(nf.format(30000));
+                        // Kursor akan fokus ke QTY
+                        txtQTY.grabFocus();
+                        break;
+                    case "A003" :
+                        txtNamaBarang.setText("Beras");
+                        txtHargaBarang.setText(nf.format(30000));
+                        // Kursor akan fokus ke QTY
+                        txtQTY.grabFocus();
+                        break;
+                    case "A004" :
+                        txtNamaBarang.setText("Beras");
+                        txtHargaBarang.setText(nf.format(30000));
+                        // Kursor akan fokus ke QTY
+                        txtQTY.grabFocus();
+                        break;
+                    case "A005" :
+                        txtNamaBarang.setText("Beras");
+                        txtHargaBarang.setText(nf.format(30000));
+                        // Kursor akan fokus ke QTY
+                        txtQTY.grabFocus();
+                        break;
+                    case "A006" :
+                        txtNamaBarang.setText("Beras");
+                        txtHargaBarang.setText(nf.format(30000));
+                        // Kursor akan fokus ke QTY
+                        txtQTY.grabFocus();
+                        break;
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+        });
+        
     }
 
     /**
