@@ -41,9 +41,12 @@ Program ini akan menerapkan beberapa aspek dari OOP, yaitu:
 * Polymorphism
 * ArrayList
 * Exception Handling
-* JavaFX / Awt
-* Generics, Collection, Sorting
-* Abstract Classes
+* GUI
+* Interface
+* Abstract Class
+* Generics
+* Collection
+* Input Output
 
 
 
