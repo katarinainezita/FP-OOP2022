@@ -7,6 +7,8 @@
  *
  * @author Inezita
  */
+
+// Interface
 interface BarangKhusus {
     void kodeBarang();
 }
