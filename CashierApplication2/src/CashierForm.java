@@ -4,6 +4,7 @@
  */
 
 // Referensi
+// https://www.youtube.com/watch?v=u-GB4tQKj_E&list=PLrPNrZZnxC8cMwZBE2pZGPcHFL8q36l88&index=6&ab_channel=KhasanAsrori
 
 import java.text.NumberFormat;
 import java.util.*;
@@ -23,17 +24,14 @@ public class CashierForm extends javax.swing.JFrame {
     // Membuat sebuah format mata uang (separator / titik)
     NumberFormat nf = NumberFormat.getNumberInstance(new Locale("in", "ID"));
  
+    // Polymorphism
     Barang beras = new Beras("Beras", 30000, "A001");
     Barang minyakGoreng = new MinyakGoreng ("Minyak Goreng", 15000, "A002");
     Barang gula = new Gula("Gula", 12000, "A003");   
    
+    // ArrayList & Collection
     ArrayList<Barang> list = new ArrayList<>();
-    public ArrayList listBarang(){
-         
-//            Barang beras = new Beras("Beras", 30000, "A001");
-//            Barang minyakGoreng = new MinyakGoreng ("Minyak Goreng", 15000, "A002");
-//            Barang gula = new Gula("Gula", 12000, "A003");
-        
+    public ArrayList listBarang(){    
             list.add(beras);
             list.add(minyakGoreng);
             list.add(gula);
@@ -61,6 +59,7 @@ public class CashierForm extends javax.swing.JFrame {
                 diskon = Integer.parseInt(txtJumlahHarga.getText().replace(".", "")) * Integer.parseInt(txtDiskon.getText()) / 100;
                 hasilDiskon = Integer.parseInt(txtJumlahHarga.getText().replace(".", "")) - diskon;
                 txtHasilDiskon.setText(nf.format(diskon));
+                
                 // PPn
                 int hasilPPN = 0;
                 if(chkPPN.isSelected()){
@@ -137,11 +136,8 @@ public class CashierForm extends javax.swing.JFrame {
     private void KodeBarang(){
         txtKodeBarang.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
             @Override
-            public void insertUpdate(DocumentEvent arg0) {
-                //String kodeBarang;
-                //kodeBarang = (String) txtKodeBarang.getText();
-                
-                switch(txtKodeBarang.getText()){
+            public void insertUpdate(DocumentEvent arg0) {               
+                 switch(txtKodeBarang.getText()){
                     case "A001" -> {
                         txtNamaBarang.setText(beras.getNamaBarang());
                         txtHargaBarang.setText(nf.format(beras.getHargaBarang()));
@@ -160,48 +156,6 @@ public class CashierForm extends javax.swing.JFrame {
                         // Kursor akan fokus ke QTY
                         txtQTY.grabFocus();
                     }
-//                    case "A004" -> {
-//                        txtNamaBarang.setText("Garam");
-//                        txtHargaBarang.setText(nf.format(3000));
-//                        // Kursor akan fokus ke QTY
-//                        txtQTY.grabFocus();
-//                    }
-//                    case "A005" -> {
-//                        txtNamaBarang.setText("Daging Sapi");
-//                        txtHargaBarang.setText(nf.format(25000));
-//                        // Kursor akan fokus ke QTY
-//                        txtQTY.grabFocus();
-//                    }
-//                    case "A006" -> {
-//                        txtNamaBarang.setText("Daging Ayam");
-//                        txtHargaBarang.setText(nf.format(20000));
-//                        // Kursor akan fokus ke QTY
-//                        txtQTY.grabFocus();
-//                    }
-//                    case "A007" -> {
-//                        txtNamaBarang.setText("Telur");
-//                        txtHargaBarang.setText(nf.format(18000));
-//                        // Kursor akan fokus ke QTY
-//                        txtQTY.grabFocus();
-//                    }
-//                    case "A008" -> {
-//                        txtNamaBarang.setText("Gas Elpiji");
-//                        txtHargaBarang.setText(nf.format(17000));
-//                        // Kursor akan fokus ke QTY
-//                        txtQTY.grabFocus();
-//                    }
-//                    case "A009" -> {
-//                        txtNamaBarang.setText("Air Mineral");
-//                        txtHargaBarang.setText(nf.format(5000));
-//                        // Kursor akan fokus ke QTY
-//                        txtQTY.grabFocus();
-//                    }
-//                    case "A010" -> {
-//                        txtNamaBarang.setText("Susu");
-//                        txtHargaBarang.setText(nf.format(6000));
-//                        // Kursor akan fokus ke QTY
-//                        txtQTY.grabFocus();
-//                    }
                     default -> {
                         txtNamaBarang.setText("");
                         txtHargaBarang.setText("");
@@ -234,48 +188,6 @@ public class CashierForm extends javax.swing.JFrame {
                         // Kursor akan fokus ke QTY
                         txtQTY.grabFocus();
                     }
-//                    case "A004" :
-//                        txtNamaBarang.setText("Garam");
-//                        txtHargaBarang.setText(nf.format(3000));
-//                        // Kursor akan fokus ke QTY
-//                        txtQTY.grabFocus();
-//                        break;
-//                    case "A005" :
-//                        txtNamaBarang.setText("Daging Sapi");
-//                        txtHargaBarang.setText(nf.format(25000));
-//                        // Kursor akan fokus ke QTY
-//                        txtQTY.grabFocus();
-//                        break;
-//                    case "A006" :
-//                        txtNamaBarang.setText("Daging Ayam");
-//                        txtHargaBarang.setText(nf.format(20000));
-//                        // Kursor akan fokus ke QTY
-//                        txtQTY.grabFocus();
-//                        break;
-//                    case "A007" :
-//                        txtNamaBarang.setText("Telur");
-//                        txtHargaBarang.setText(nf.format(18000));
-//                        // Kursor akan fokus ke QTY
-//                        txtQTY.grabFocus();
-//                        break;
-//                    case "A008" :
-//                        txtNamaBarang.setText("Gas Elpiji");
-//                        txtHargaBarang.setText(nf.format(17000));
-//                        // Kursor akan fokus ke QTY
-//                        txtQTY.grabFocus();
-//                        break;
-//                    case "A009" :
-//                        txtNamaBarang.setText("Air Mineral");
-//                        txtHargaBarang.setText(nf.format(5000));
-//                        // Kursor akan fokus ke QTY
-//                        txtQTY.grabFocus();
-//                        break;
-//                    case "A010" :
-//                        txtNamaBarang.setText("Susu");
-//                        txtHargaBarang.setText(nf.format(6000));
-//                        // Kursor akan fokus ke QTY
-//                        txtQTY.grabFocus();
-//                        break;
                     default -> {
                         txtNamaBarang.setText("");
                         txtHargaBarang.setText("");
@@ -285,9 +197,7 @@ public class CashierForm extends javax.swing.JFrame {
             }
 
             @Override
-            public void changedUpdate(DocumentEvent arg0) {
-                //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-            }
+            public void changedUpdate(DocumentEvent arg0) {}
         });
         
     }
