@@ -15,14 +15,14 @@ Aplikasi yang akan dibuat adalah mengenai aplikasi kasir. Terdapat
 beberapa fitur dalam aplikasi tersebut, yaitu :
 
 * Kode Barang
-* Harga
-* Diskon
+* Nama Barang
+* Harga Barang
+* Jumlah Barang
 * PPN (Pajak)
-* Total Harga
-* Jumlah Produk 
+* Diskon
+* Total Harga 
 
-Untuk menjalankan program ini, pengguna harus memasukkan kode barang terlebih dahulu.
-Kode barang inilah yang nantinya akan menampilkan 
+Untuk menjalankan program ini, pengguna harus memasukkan kode barang terlebih dahulu. Kode barang inilah yang nantinya akan menampilkan 
 * Nama Barang
 * Harga Barang
 
