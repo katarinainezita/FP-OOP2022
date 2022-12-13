@@ -5,6 +5,9 @@ Cashier Application with Java Netbeans
 Demo Applikasi
 https://youtu.be/n9Hk0Sizaus
 
+Referensi
+https://www.youtube.com/watch?v=u-GB4tQKj_E&list=PLrPNrZZnxC8cMwZBE2pZGPcHFL8q36l88&index=6&ab_channel=KhasanAsrori
+
 ## Introduce
 Name : Katarina Inezita Prambudi
 
