@@ -2,6 +2,9 @@
 
 Cashier Application with Java Netbeans
 
+Demo Applikasi
+https://youtu.be/n9Hk0Sizaus
+
 ## Introduce
 Name : Katarina Inezita Prambudi
 
