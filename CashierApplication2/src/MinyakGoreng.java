@@ -11,9 +11,11 @@
  */
 
 // Inheritance
+// Generics
 public class MinyakGoreng<T> extends Barang{
     private String kodeBarang;
     
+    // Overloading
     public MinyakGoreng(String namaBarang, String kodeBarang){
         super(namaBarang);
         this.kodeBarang = kodeBarang;
@@ -34,7 +36,7 @@ public class MinyakGoreng<T> extends Barang{
         return this.kodeBarang;
     }
     
-    
+    // Overriding
     public void cetakInfo(){
         super.cetakInfo();
         System.out.println(", Kode Barang : " + this.kodeBarang);
