@@ -495,4 +495,4 @@ a. CashierForm.java
 
 Hasil input output seperti pada gambar dibawah ini :
 
-![ScreenShot](https://raw.github.com/katarinainezita/FP-OOP2022/InputOutput.jpg)
+![ScreenShot](https://github.com/katarinainezita/FP-OOP2022/blob/d12ba226e647006d912b552c61c83418bf3fcd61/InputOutput.jpg)
