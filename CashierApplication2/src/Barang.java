@@ -15,7 +15,7 @@ import java.util.Locale;
  */
 
 // Class Barang
-// Abstracr
+// Abstract Class
 abstract class Barang {
     private String namaBarang;
     private int hargaBarang;
