@@ -7,9 +7,14 @@
  *
  * @author Inezita
  */
+
+// Interface Implements
+// Inheritance
 public class Rokok extends Barang implements BarangKhusus {
     
     private String kodeBarang;
+    
+    // Overloading
     public Rokok(String namaBarang, String kodeBarang){
         super(namaBarang);
         this.kodeBarang = kodeBarang;
@@ -20,7 +25,8 @@ public class Rokok extends Barang implements BarangKhusus {
         this.kodeBarang = kodeBarang;
        
     }
-
+    
+    // Encapsulation
     public void setKodeBarang(String kodeBarang){
         this.kodeBarang = kodeBarang;
     }
@@ -28,7 +34,8 @@ public class Rokok extends Barang implements BarangKhusus {
     public String getKodeBarang(){
         return this.kodeBarang;
     }
-
+    
+    
     @Override
     public void kodeBarang() {
        System.out.println("Kode : " + this.getKodeBarang());
